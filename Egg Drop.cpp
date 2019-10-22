@@ -24,14 +24,14 @@ int drop(int n,int low,int up)
 			steps++;
 			if(broken(i))
 			{
-				n--;
+				cout<<" Broken";
 				steps++;
 				return i+1;
 			}
+			cout<<" Not Broken"<<endl;
 		}
 	}
 	else if(n>=2)
-	if(n>=2)
 	{
 		cout<<"Dropping from floor: "<<(low+up)/2;
 		if(broken((low+up)/2))
