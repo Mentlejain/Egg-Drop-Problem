@@ -1,12 +1,10 @@
 #include<iostream>
 #include<conio.h>
-#include<math.h>
-#include<cstdlib>
+using namespace std;
 int k;
 int N;
 int c=0;
 int steps=0;
-using namespace  std;
 bool broken(int f)
 {
 	if(f<=c)
@@ -14,32 +12,50 @@ bool broken(int f)
 	else
 		return true;
 }
-int drop(int n,int low,int up)
+int drop(int &n,int low,int up)
 {
+	if(low == up )
+	{
+		steps++;
+		cout<<"Breaking at floor: "<<low;
+		if(!broken(low))
+		{
+			cout<<" Not Broken"<<endl;
+			return low+1;
+		}
+		else
+		{
+			cout<<" Broken"<<endl;
+			return low;
+		}
+	}
 	if(n==1)
 	{
-		for(int i=low+1;n>0 and i<up-1;i++)
+		for(int i=low;n>0 and i<=up;i++)
 		{
-			cout<<"Dropping from floor: "<<i<<endl;
+			//cout<<"Lowest floor: "<<low<<" Highest floor: "<<up<<" ";
+			cout<<"Dropping from floor: "<<i;
 			steps++;
-			if(broken(i))
+			if(broken(i) and !broken(i-1))
 			{
-				cout<<" Broken";
+				cout<<" Broken"<<endl;
+				n--;
 				steps++;
-				return i+1;
+				return i;
 			}
 			cout<<" Not Broken"<<endl;
 		}
 	}
 	else if(n>=2)
 	{
+		//cout<<"Lowest floor: "<<low<<" Highest floor: "<<up<<" ";
 		cout<<"Dropping from floor: "<<(low+up)/2;
 		if(broken((low+up)/2))
 		{
 			cout<<" Broken"<<endl;
 			n--;
 			steps++;
-			return drop(n-1,low,(low+up)/2-1);
+			return drop(n,low,(low+up)/2-1);
 		}
 		else
 		{
@@ -59,7 +75,8 @@ int main()
 	cout<<"Enter threshold floor: ";
 	cin>>c;
 	th=drop(N,1,k);
-	cout<<"Threshold floor is: "<<th<<endl;
-	cout<<"Steps to reach critical floor: "<<steps<<endl;
-	
+	cout<<"Breaking floor is: "<<th<<endl;
+	cout<<"Eggs remaining: "<<N<<endl;
+	cout<<"Steps to determine critical floor: "<<steps<<endl;
+	getch();
 }
