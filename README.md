@@ -21,3 +21,6 @@ Dynamic programming is both a mathematical optimization method and a computer pr
 In both contexts it refers to simplifying a complicated problem by breaking it down into simpler sub-problems in a recursive manner.
 There are two key attributes that a problem must have in order for dynamic programming to be applicable: optimal substructure and overlapping sub-problems. If a problem can be solved by combining optimal solutions to non-overlapping sub-problems, the strategy is called "divide and conquer" instead.
 This is why merge sort and quick sort are not called dynamic programming problems.
+
+It is utilised in cases where threshold is unknown and is required like in the case of finding pressure fault in a solid using a pnuematic drill, finding the fault due to stress in a solid, finding tensile stress of an object
+It was implemented by NASA in the Range Rover sent to mars to determine the max height of descent without causing structural damage.
